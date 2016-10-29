@@ -231,7 +231,7 @@ void Image::copyFlipped(const Image& img, unsigned int x, unsigned int y, unsign
 	assert(dx + h <= width());
 	assert(dy + w <= height());
 
-	auto pointerSrc = &img.at(img.width() - y - 1, x);
+	auto pointerSrc = &img.atFlipped(x, y);
 	auto strideSrc = h * img.width() + 1;
 	auto innerStrideSrc = img.width();
 
@@ -303,7 +303,7 @@ void Image::copyLineHorFlipped(const Image& img, unsigned int x, unsigned int y,
 	assert(dx + length <= width());
 	assert(dy < height());
 
-	auto pointerSrc = &img.at(img.width() - y - 1, x);
+	auto pointerSrc = &img.atFlipped(x, y);
 	auto strideSrc = img.width();
 
 	auto pointerDst = &at(dx, dy);
@@ -320,7 +320,7 @@ void Image::copyLineVertFlipped(const Image& img, unsigned int x, unsigned int y
 	assert(dx < width());
 	assert(dy + length <= height());
 
-	auto pointerSrc = &img.at(img.width() - y - 1, x);
+	auto pointerSrc = &img.atFlipped(x, y);
 
 	auto pointerDst = &at(dx, dy);
 	auto strideDst = width();
