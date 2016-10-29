@@ -20,4 +20,3 @@ template<typename T, typename Pred> auto finalize(T* value, Pred pred) {
 }
 
 unsigned int makeRGBFromString(const std::string& color, unsigned char alpha = 0xFF);
-void writeJSONString(std::ostream& stream, const std::string& value);

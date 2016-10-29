@@ -2,10 +2,6 @@
 
 #include <algorithm>
 
-inline unsigned int getFlipped(const Image& img, unsigned int x, unsigned int y) {
-	return img.at(img.width() - y - 1, x);
-}
-
 Canvas::Canvas(unsigned int width, unsigned int height): m_img(width, height) { }
 
 void Canvas::draw(const Image& img, unsigned int x, unsigned int y, bool flip, unsigned int expand) {
