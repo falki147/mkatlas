@@ -1,6 +1,7 @@
 #include "DistantField.hpp"
 
 #include <algorithm>
+#include <cmath>
 
 #include "Utils.hpp"
 
@@ -43,7 +44,7 @@ static float findSignedDistance(const std::vector<bool>& map, int x, int y, int 
 			if (ins != map[j * w + i])
 				distMin(minDist, x - i, y - j);
 
-	auto dist = std::min(std::sqrtf((float) minDist), spread) / spread;
+	auto dist = std::min(std::sqrt((float) minDist), spread) / spread;
 	return ins ? dist : -dist;
 }
 

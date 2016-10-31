@@ -2,14 +2,25 @@
 
 #ifdef WIN32
 	#define WIN32_LEAN_AND_MEAN
-	#define NOMINMAX
+	
+	#ifndef NOMINMAX
+		#define NOMINMAX
+	#endif
+	
 	#define UNICODE
 	
 	#include <Windows.h>
 	#include <codecvt>
 	#include <algorithm>
+	#include <locale>
 	
 	#include "Utils.hpp"
+	
+	#ifdef _MSC_VER
+		#define CHAR16 unsigned short
+	#else
+		#define CHAR16 char16_t
+	#endif
 	
 	static std::size_t findSeperator(const std::string& str) {
 		auto pb = str.find_last_of('\\');
@@ -20,7 +31,7 @@
 	
 	std::vector<std::string> glob(const std::string& str) {
 		// Setup conversion
-		std::wstring_convert<std::codecvt_utf8_utf16<unsigned short>, unsigned short> conv;
+		std::wstring_convert<std::codecvt_utf8_utf16<CHAR16>, CHAR16> conv;
 
 		// Get base directory
 		auto seperator = findSeperator(str);
@@ -45,7 +56,7 @@
 
 		do {
 			if ((data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) == 0)
-				strings.push_back(baseDir + conv.to_bytes((unsigned short*) data.cFileName));
+				strings.push_back(baseDir + conv.to_bytes((CHAR16*) data.cFileName));
 		} while (FindNextFile(h, &data));
 
 		FindClose(h);

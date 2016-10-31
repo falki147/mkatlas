@@ -1,6 +1,7 @@
 #include "ArgParser.hpp"
 
 #include <memory>
+#include <cstring>
 
 #include "Platform.hpp"
 
