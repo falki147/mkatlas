@@ -233,7 +233,7 @@ int main(int argc, const char** argv) {
 						writer.writeUint(imageBounds[i].m_x);
 
 						writer.key("offsetY");
-						writer.writeUint(imageBounds[i].m_x);
+						writer.writeUint(imageBounds[i].m_y);
 
 						writer.key("realWidth");
 						writer.writeUint(images[i].width());
